@@ -1,3 +1,4 @@
+import 'package:aladin/formRegistration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -14,7 +15,10 @@ class _kalkulatorState extends State<kalkulator> {
   TextEditingController ctrPanjang = new TextEditingController();
   TextEditingController ctrLebar = new TextEditingController();
   TextEditingController ctrHasil = new TextEditingController();
+  TextEditingController ctrPhone = new TextEditingController();
+  TextEditingController ctrHasilPhone = new TextEditingController();
   int id = 1;
+  String myphone = "-";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,10 +94,40 @@ class _kalkulatorState extends State<kalkulator> {
              
             ),
              ),
+               SizedBox(height: 10,), 
+            Align(
+            alignment: Alignment.center,
+          child: Text( 
+            "Phone : "+myphone, style: TextStyle(fontSize: 20, fontWeight:FontWeight.bold, color: Colors.black,), 
+             
+            ),
+             ),
+             
            
+           ElevatedButton(
+            onPressed: () async{
+              final result = await
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const formRegistration()),
+            );
+            print("hasil input phone number "+result.toString() );
+            setState(() {
+              myphone = result.toString();
+            });
+            
+          },
+            child: Center(
+              child: Text(
+                "Phone Number",
+                textAlign: TextAlign.center,
+              ),
+            ),
+           ),
           ],
         ),
       ),
     );
+
   }
 }
